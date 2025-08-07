@@ -23,6 +23,8 @@ header {
 header img {
   height: 80px; /* fix logo size */
   margin-bottom: 10px;
+  display: inline-block;
+  max-width: 100%;
 }
 
 header h1 {
@@ -62,7 +64,7 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-  background-image: url('heroimage.jpg'); /* make sure this matches your filename */
+  background-image: url('hero.jpg'); /* make sure this matches your filename */
   background-size: cover;
   background-position: center;
   text-align: center;
