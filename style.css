@@ -1,213 +1,135 @@
-/* === Reset & Base === */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background-color: #fdfcf7;
+  background-color: #fdfdf8;
   color: #333;
 }
 
-/* === Header === */
+/* Header */
 header {
-  background-color: #bfa03d;
-  color: #fff;
-  padding: 2.5rem 1rem;
+  background-color: #ffd700;
   text-align: center;
+  padding: 20px 10px;
+}
+
+header img {
+  height: 80px; /* fix logo size */
+  margin-bottom: 10px;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 5px;
 }
 
 header p {
-  font-size: 1.2rem;
-  font-weight: 300;
+  font-size: 1.1rem;
 }
 
-/* === Navigation === */
+/* Navigation */
 nav {
-  background-color: #333;
+  background-color: #444;
 }
 
 nav ul {
   display: flex;
+  justify-content: center;
   list-style: none;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
-nav ul li {
-  margin: 0.5rem;
+nav li {
+  margin: 10px 20px;
 }
 
-nav ul li a {
+nav a {
   color: #fff;
   text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  display: block;
-  transition: background-color 0.3s;
-}
-
-nav ul li a:hover {
-  background-color: #bfa03d;
-  border-radius: 5px;
-}
-
-/* === Container === */
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 2rem;
-}
-
-/* === Hero Section === */
-.hero {
-  height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-              url('images/school-banner.jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-  font-size: 3rem;
   font-weight: bold;
-  border-radius: 10px;
-  margin: 2rem auto;
-  padding: 2rem;
+  transition: color 0.3s;
 }
 
-/* === CTA Button === */
-.cta-button {
-  display: inline-block;
-  background-color: #bfa03d;
+nav a:hover {
+  color: #ffd700;
+}
+
+/* Hero Section */
+.hero {
+  background-image: url('heroimage.jpg'); /* make sure this matches your filename */
+  background-size: cover;
+  background-position: center;
+  text-align: center;
   color: #fff;
-  padding: 0.8rem 1.5rem;
-  margin-top: 1.5rem;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.cta-button {
+  background-color: #ffd700;
+  color: #000;
+  padding: 12px 24px;
   font-size: 1rem;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
 }
 
 .cta-button:hover {
-  background-color: #a78c30;
+  background-color: #e6c200;
 }
 
-/* === Feature Cards === */
+/* Cards */
 .cards {
   display: flex;
+  justify-content: space-around;
+  padding: 40px 20px;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-top: 3rem;
 }
 
 .card {
   background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
   text-align: center;
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
 }
 
 .card h3 {
-  color: #bfa03d;
-  margin-bottom: 1rem;
+  color: #444;
+  margin-bottom: 10px;
 }
 
-/* === Section Spacing === */
-section {
-  padding: 2rem 0;
+.card p {
+  color: #666;
 }
 
-/* === Footer === */
+/* Footer */
 footer {
-  background-color: #333;
+  background-color: #444;
   color: #fff;
   text-align: center;
-  padding: 1.2rem 0;
-  margin-top: 3rem;
-}
-
-/* === Admissions Section === */
-.admissions {
-  background-color: #fdfcf7;
-  padding: 4rem 1rem;
-  text-align: center;
-}
-
-.admissions h2 {
-  color: #bfa03d;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.admission-steps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  margin: 3rem 0;
-}
-
-.step {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  max-width: 250px;
-  transition: transform 0.3s ease;
-}
-
-.step:hover {
-  transform: translateY(-5px);
-}
-
-.step h3 {
-  color: #bfa03d;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.step p {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* === Responsive Adjustments === */
-@media (max-width: 768px) {
-  .hero {
-    font-size: 2rem;
-    padding: 3rem 1rem;
-  }
-
-  .cards,
-  .admission-steps {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav ul {
-    flex-direction: column;
-  }
-
-  nav ul li {
-    margin: 0.3rem 0;
-  }
+  padding: 15px 0;
+  font-size: 0.9rem;
 }
