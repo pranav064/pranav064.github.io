@@ -68,24 +68,20 @@ nav ul li a:hover {
 
 /* === Hero Section === */
 .hero {
+  height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
               url('images/school-banner.jpg') center/cover no-repeat;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 5rem 2rem;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  font-size: 3rem;
+  font-weight: bold;
   border-radius: 10px;
   margin: 2rem auto;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto;
+  padding: 2rem;
 }
 
 /* === CTA Button === */
@@ -148,13 +144,61 @@ footer {
   margin-top: 3rem;
 }
 
+/* === Admissions Section === */
+.admissions {
+  background-color: #fdfcf7;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.admissions h2 {
+  color: #bfa03d;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.admission-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.step {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  max-width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step h3 {
+  color: #bfa03d;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #555;
+}
+
 /* === Responsive Adjustments === */
 @media (max-width: 768px) {
-  .hero h1 {
+  .hero {
     font-size: 2rem;
+    padding: 3rem 1rem;
   }
 
-  .cards {
+  .cards,
+  .admission-steps {
     flex-direction: column;
     align-items: center;
   }
