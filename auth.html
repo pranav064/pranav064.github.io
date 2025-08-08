@@ -46,17 +46,19 @@
     }
 
     // Login
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          document.getElementById("status").innerText = "Login successful!";
-        })
-        .catch((error) => {
-          document.getElementById("status").innerText = error.message;
-        });
-    }
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      document.getElementById("status").innerText = "Login successful!";
+      window.location.href = "teacher-dashboard.html"; // Redirect after login
+    })
+    .catch((error) => {
+      document.getElementById("status").innerText = error.message;
+    });
+}
+
 
     // Logout
     function logout() {
@@ -74,3 +76,4 @@
   </script>
 </body>
 </html>
+
