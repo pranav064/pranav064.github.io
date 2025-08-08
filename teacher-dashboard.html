@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8e1;
+      padding: 20px;
+    }
+    h1 {
+      color: #b8860b;
+    }
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, button, textarea {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+    }
+    button {
+      background: #b8860b;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #daa520;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome, Teacher!</h1>
+
+  <!-- Upload Photos -->
+  <div class="section">
+    <h2>Upload Photos</h2>
+    <input type="file" id="photoUpload" accept="image/*">
+    <button onclick="uploadPhoto()">Upload Photo</button>
+  </div>
+
+  <!-- Upload Marks -->
+  <div class="section">
+    <h2>Upload Student Marks</h2>
+    <input type="text" id="studentId" placeholder="Enter Student ID">
+    <input type="number" id="marks" placeholder="Enter Marks">
+    <button onclick="uploadMarks()">Upload Marks</button>
+  </div>
+
+  <!-- Add Notices -->
+  <div class="section">
+    <h2>Add Notice</h2>
+    <textarea id="noticeText" placeholder="Write notice here..."></textarea>
+    <button onclick="uploadNotice()">Post Notice</button>
+  </div>
+
+  <script type="module">
+    // Firebase imports (must match your Firebase setup in auth.html)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
+
+    // Your Firebase config (copy the SAME one from auth.html)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    // Upload Photo
+    async function uploadPhoto() {
+      const file = document.getElementById('photoUpload').files[0];
+      if (!file) return alert("Please select a photo!");
+      const storageRef = ref(storage, 'photos/' + file.name);
+      await uploadBytes(storageRef, file);
+      alert("Photo uploaded successfully!");
+    }
+
+    // Upload Marks
+    async function uploadMarks() {
+      const studentId = document.getElementById('studentId').value;
+      const marks = document.getElementById('marks').value;
+      if (!studentId || !marks) return alert("Please fill all fields!");
+      await setDoc(doc(db, "marks", studentId), { marks: Number(marks) });
+      alert("Marks uploaded successfully!");
+    }
+
+    // Post Notice
+    async function uploadNotice() {
+      const notice = document.getElementById('noticeText').value;
+      if (!notice) return alert("Please write a notice!");
+      await addDoc(collection(db, "notices"), { text: notice, date: new Date() });
+      alert("Notice posted successfully!");
+    }
+  </script>
+
+</body>
+</html>
