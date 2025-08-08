@@ -64,7 +64,7 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-  border: 2px dashed red; /* TEMP *
+  border: 2px dashed red; /* TEMP */
   background-image: url('hero.png'); /* make sure this matches your filename */
   background-size: cover;
   background-position: center;
