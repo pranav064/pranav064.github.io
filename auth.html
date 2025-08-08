@@ -16,105 +16,90 @@
   <p id="status"></p>
 
   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-  // ----- YOUR FIREBASE CONFIG (leave as you already had it) -----
-  const firebaseConfig = {
-    apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
-    authDomain: "school-portal-a56dc.firebaseapp.com",
-    projectId: "school-portal-a56dc",
-    storageBucket: "school-portal-a56dc.appspot.com",
-    messagingSenderId: "1034844606726",
-    appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
-    measurementId: "G-D4T8D0NCVN"
-  };
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
+      authDomain: "school-portal-a56dc.firebaseapp.com",
+      projectId: "school-portal-a56dc",
+      storageBucket: "school-portal-a56dc.appspot.com",
+      messagingSenderId: "1034844606726",
+      appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
+      measurementId: "G-D4T8D0NCVN"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    // Init Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  // Helper: show status to user
-  function setStatus(text) {
-    const el = document.getElementById("status");
-    if (el) el.textContent = text;
-  }
-
-  // ------------- Make functions global so buttons can call them -------------
-  // Sign Up (creates an account)
-  window.signUp = async function () {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    if (!email || !password) {
-      setStatus("Enter email and password (password >= 6 chars).");
-      return;
+    function setStatus(msg) {
+      document.getElementById("status").innerText = msg;
     }
 
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setStatus("✅ Signup successful! Redirecting...");
-      // Optional: send to dashboard after signup
-      window.location.href = "teacher-dashboard.html";
-    } catch (err) {
-      console.error("Signup error:", err);
-      setStatus("Signup error: " + err.message);
-    }
-  };
+    // Sign Up
+    window.signUp = async function () {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-  // Login
-  window.login = async function () {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+      if (!email || !password) {
+        setStatus("Please enter email and password.");
+        return;
+      }
 
-    if (!email || !password) {
-      setStatus("Enter email and password.");
-      return;
-    }
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        setStatus("✅ Signup successful! Redirecting...");
+        window.location.href = "teacher-dashboard.html";
+      } catch (error) {
+        setStatus("Signup error: " + error.message);
+      }
+    };
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setStatus("✅ Login successful! Redirecting...");
-      window.location.href = "teacher-dashboard.html";
-    } catch (err) {
-      console.error("Login error:", err);
-      setStatus("Login error: " + err.message);
-    }
-  };
+    // Login
+    window.login = async function () {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-  // Logout
-  window.logout = async function () {
-    try {
-      await signOut(auth);
-      setStatus("Logged out!");
-    } catch (err) {
-      console.error("Logout error:", err);
-      setStatus("Logout error: " + err.message);
-    }
-  };
+      if (!email || !password) {
+        setStatus("Please enter email and password.");
+        return;
+      }
 
-  // Auto-check auth state and show status (and optionally redirect)
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setStatus("Logged in as: " + user.email);
-      // If you want to auto-redirect logged-in users away from auth.html,
-      // uncomment the following lines:
-      // if (location.pathname.endsWith("auth.html")) {
-      //   window.location.href = "teacher-dashboard.html";
-      // }
-    } else {
-      setStatus("Not logged in.");
-    }
-  });
-</script>
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        setStatus("✅ Login successful! Redirecting...");
+        window.location.href = "teacher-dashboard.html";
+      } catch (error) {
+        setStatus("Login error: " + error.message);
+      }
+    };
 
+    // Logout
+    window.logout = async function () {
+      try {
+        await signOut(auth);
+        setStatus("Logged out!");
+      } catch (error) {
+        setStatus("Logout error: " + error.message);
+      }
+    };
+
+    // Auth state listener
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setStatus("Logged in as: " + user.email);
+      } else {
+        setStatus("Not logged in.");
+      }
+    });
+  </script>
 </body>
 </html>
-
-
