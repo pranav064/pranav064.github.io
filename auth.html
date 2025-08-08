@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teacher Login</title>
+</head>
+<body>
+  <h2>Teacher Login / Signup</h2>
+
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Password" />
+  <br><br>
+  <button onclick="signUp()">Sign Up</button>
+  <button onclick="login()">Login</button>
+  <button onclick="logout()">Logout</button>
+
+  <p id="status"></p>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
+      authDomain: "school-portal-a56dc.firebaseapp.com",
+      projectId: "school-portal-a56dc",
+      storageBucket: "school-portal-a56dc.appspot.com",
+      messagingSenderId: "1034844606726",
+      appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
+      measurementId: "G-D4T8D0NCVN"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Sign Up
+    function signUp() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          document.getElementById("status").innerText = "Signup successful!";
+        })
+        .catch((error) => {
+          document.getElementById("status").innerText = error.message;
+        });
+    }
+
+    // Login
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          document.getElementById("status").innerText = "Login successful!";
+        })
+        .catch((error) => {
+          document.getElementById("status").innerText = error.message;
+        });
+    }
+
+    // Logout
+    function logout() {
+      signOut(auth).then(() => {
+        document.getElementById("status").innerText = "Logged out!";
+      });
+    }
+
+    // Auto check login status
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById("status").innerText = "Logged in as: " + user.email;
+      }
+    });
+  </script>
+</body>
+</html>
