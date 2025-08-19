@@ -91,5 +91,17 @@
   <footer>
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
+<script>
+  const principalSection = document.querySelector('.about-section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        principalSection.classList.add('active');
+        observer.unobserve(principalSection);
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(principalSection);
+</script>
 </body>
 </html>
