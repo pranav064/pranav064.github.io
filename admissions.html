@@ -20,9 +20,9 @@
   <!-- Navbar -->
   <nav class="navbar">
     <ul>
-      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
-      <li><a href="admission.html">Admission</a></li>
+      <li><a href="admission.html" class="active">Admission</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
@@ -30,8 +30,8 @@
   <!-- Admission Form Section -->
   <section class="admission-section">
     <h2>Admission Form</h2>
-    <form action="#" method="POST">
-      
+    <form action="#" method="POST" enctype="multipart/form-data">
+
       <label for="studentName">Student Name</label>
       <input type="text" id="studentName" name="studentName" placeholder="Enter student's full name" required>
 
@@ -64,7 +64,6 @@
         <option value="1">Class 1</option>
         <option value="2">Class 2</option>
         <option value="3">Class 3</option>
-        <!-- Add more classes as needed -->
       </select>
 
       <label for="contactNumber">Contact Number</label>
@@ -73,7 +72,31 @@
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" placeholder="Enter email" required>
 
-      <button type="submit">Submit Application</button>
+      <!-- Document Upload Section -->
+      <div class="upload-cards">
+        <h3>Upload Required Documents</h3>
+        <p>Upload birth certificate, photo, previous school documents, etc.</p>
+        <input type="file" id="documents" name="documents[]" multiple accept=".pdf,.jpg,.png" required>
+        <div class="uploaded-files" id="uploadedFiles"></div>
+      </div>
+
+      <!-- Fee Payment Section -->
+      <div class="fee-section">
+        <h3>Admission Fee Payment</h3>
+        <p>Select payment method:</p>
+        <div class="payment-options">
+          <label class="payment-card">
+            <input type="radio" name="feePayment" value="online" required>
+            <span>💳 Online Payment (UPI/Cards)</span>
+          </label>
+          <label class="payment-card">
+            <input type="radio" name="feePayment" value="offline" required>
+            <span>🏦 Offline Payment (Cash/Bank)</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="cta-button">Submit Application</button>
     </form>
   </section>
 
@@ -81,6 +104,22 @@
   <footer>
     &copy; 2025 Shahid Kamal Kant Memorial School. All Rights Reserved.
   </footer>
+
+  <!-- JS to show uploaded files dynamically -->
+  <script>
+    const docInput = document.getElementById('documents');
+    const uploadedFiles = document.getElementById('uploadedFiles');
+
+    docInput.addEventListener('change', () => {
+      uploadedFiles.innerHTML = '';
+      Array.from(docInput.files).forEach(file => {
+        const div = document.createElement('div');
+        div.classList.add('file-card');
+        div.textContent = file.name;
+        uploadedFiles.appendChild(div);
+      });
+    });
+  </script>
 
 </body>
 </html>
