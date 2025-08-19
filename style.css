@@ -532,3 +532,79 @@ footer {
     justify-content: center;
   }
 }
+/* Admission Page */
+.admission-section {
+  max-width: 900px;
+  margin: 60px auto;
+  background: #fff8e1; /* soft warm background */
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.admission-section h2 {
+  color: #b8870f; /* golden heading */
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.admission-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admission-section label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.admission-section input,
+.admission-section select,
+.admission-section textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border 0.3s;
+}
+
+.admission-section input:focus,
+.admission-section select:focus,
+.admission-section textarea:focus {
+  border-color: #d4af37;
+  outline: none;
+}
+
+.admission-section button {
+  width: max-content;
+  background: #d4af37;
+  color: #222;
+  padding: 12px 25px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+  align-self: center;
+}
+
+.admission-section button:hover {
+  background: #222;
+  color: #d4af37;
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .admission-section {
+    padding: 30px 15px;
+  }
+
+  .admission-section button {
+    width: 100%;
+  }
+}
