@@ -16,90 +16,105 @@
   <p id="status"></p>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import {
-      getAuth,
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword,
-      signOut,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+  // ✅ Use the SAME version as auth.html (v12) and the SAME config
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, getDocs, query, orderBy
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  import {
+    getStorage, ref, uploadBytes, getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+  import {
+    getAuth, onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
-      authDomain: "school-portal-a56dc.firebaseapp.com",
-      projectId: "school-portal-a56dc",
-      storageBucket: "school-portal-a56dc.appspot.com",
-      messagingSenderId: "1034844606726",
-      appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
-      measurementId: "G-D4T8D0NCVN"
-    };
+  // 🔁 PASTE THE EXACT SAME CONFIG YOU USE IN auth.html
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
+    authDomain: "school-portal-a56dc.firebaseapp.com",
+    projectId: "school-portal-a56dc",
+    storageBucket: "school-portal-a56dc.appspot.com",
+    messagingSenderId: "1034844606726",
+    appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
+    measurementId: "G-D4T8D0NCVN"
+  };
 
-    // Init Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+  const auth = getAuth(app);
 
-    function setStatus(msg) {
-      document.getElementById("status").innerText = msg;
-    }
+  // 🚪 Require login for the dashboard
+  onAuthStateChanged(auth, (user) => {
+    if (!user) window.location.href = "auth.html";
+  });
 
-    // Sign Up
-    window.signUp = async function () {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+  // 🔓 Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    signOut(auth);
+  });
 
-      if (!email || !password) {
-        setStatus("Please enter email and password.");
-        return;
-      }
+  // 🖼️ Upload Photo
+  document.getElementById("uploadPhotoBtn").addEventListener("click", async () => {
+    const file = document.getElementById("photoUpload").files[0];
+    if (!file) return alert("Please select a photo!");
+    const storageRef = ref(storage, "photos/" + Date.now() + "_" + file.name);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    await addDoc(collection(db, "photos"), { url, createdAt: new Date() });
+    alert("Photo uploaded successfully!");
+    loadPhotos();
+  });
 
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        setStatus("✅ Signup successful! Redirecting...");
-        window.location.href = "teacher-dashboard.html";
-      } catch (error) {
-        setStatus("Signup error: " + error.message);
-      }
-    };
-
-    // Login
-    window.login = async function () {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (!email || !password) {
-        setStatus("Please enter email and password.");
-        return;
-      }
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        setStatus("✅ Login successful! Redirecting...");
-        window.location.href = "teacher-dashboard.html";
-      } catch (error) {
-        setStatus("Login error: " + error.message);
-      }
-    };
-
-    // Logout
-    window.logout = async function () {
-      try {
-        await signOut(auth);
-        setStatus("Logged out!");
-      } catch (error) {
-        setStatus("Logout error: " + error.message);
-      }
-    };
-
-    // Auth state listener
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setStatus("Logged in as: " + user.email);
-      } else {
-        setStatus("Not logged in.");
-      }
+  // 👀 Load Photos
+  async function loadPhotos() {
+    const photoGallery = document.getElementById("photoGallery");
+    photoGallery.innerHTML = "";
+    const q = query(collection(db, "photos"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(q);
+    snap.forEach((d) => {
+      const img = document.createElement("img");
+      img.src = d.data().url;
+      photoGallery.appendChild(img);
     });
-  </script>
+  }
+  loadPhotos();
+
+  // 🧮 Upload Marks
+  document.getElementById("uploadMarksBtn").addEventListener("click", async () => {
+    const studentId = document.getElementById("studentId").value.trim();
+    const marks = document.getElementById("marks").value;
+    if (!studentId || !marks) return alert("Please fill all fields!");
+    await addDoc(collection(db, "marks"), { studentId, marks: Number(marks), date: new Date() });
+    alert("Marks uploaded successfully!");
+  });
+
+  // 📢 Post Notice
+  document.getElementById("uploadNoticeBtn").addEventListener("click", async () => {
+    const notice = document.getElementById("noticeText").value.trim();
+    if (!notice) return alert("Please write a notice!");
+    await addDoc(collection(db, "notices"), { text: notice, date: new Date() });
+    alert("Notice posted successfully!");
+    loadNotices();
+  });
+
+  // 📜 Load Notices
+  async function loadNotices() {
+    const noticesList = document.getElementById("noticesList");
+    noticesList.innerHTML = "";
+    const q = query(collection(db, "notices"), orderBy("date", "desc"));
+    const snap = await getDocs(q);
+    snap.forEach((d) => {
+      const data = d.data();
+      const when = (data.date?.toDate ? data.date.toDate() : new Date(data.date)).toLocaleString();
+      const div = document.createElement("div");
+      div.textContent = `${when} - ${data.text}`;
+      noticesList.appendChild(div);
+    });
+  }
+  loadNotices();
+</script>
+
 </body>
 </html>
+
