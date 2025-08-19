@@ -197,31 +197,126 @@ body {
   color: #d4af37;
 }
 
-/* About Us Page */
+/* About Us Page - Principal's Message Section */
 .about-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
   padding: 60px 20px;
   max-width: 1000px;
   margin: auto;
-  text-align: center;
+  background: #fff8e1; /* soft warm background */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  position: relative;
+  text-align: left;
 }
 
-.about-section h2 {
+/* Golden vertical line accent */
+.about-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  width: 5px;
+  background: #d4af37;
+  border-radius: 5px;
+}
+
+/* Photo */
+.about-section .about-image {
+  flex: 1 1 250px;
+  text-align: center;
+  z-index: 1;
+}
+
+.about-section .about-image img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 15px;
+  border: 3px solid #d4af37;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  object-fit: cover;
+
+  /* initial state for scroll animation */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+/* Content */
+.about-section .about-content {
+  flex: 2 1 500px;
+  z-index: 1;
+  opacity: 0; /* scroll animation initial state */
+  transform: translateX(30px);
+  transition: all 1s ease;
+}
+
+.about-section .about-content h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #d4af37;
+  color: #b8870f; /* golden heading */
+  position: relative;
 }
 
-.about-section p {
+/* Star icon and shine line */
+.about-section .about-content h2::before {
+  content: "★";
+  display: block;
+  font-size: 2rem;
+  color: #d4af37;
+  margin-bottom: 10px;
+  text-align: left;
+  opacity: 0;
+  transform: scale(0.5) rotate(-15deg);
+  transition: all 1s ease;
+}
+
+.about-section .about-content h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(212,175,55,0.4), rgba(212,175,55,1), rgba(212,175,55,0.4));
+  margin-top: 5px;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 1s ease;
+}
+
+/* Paragraphs and signature */
+.about-section .about-content p {
   font-size: 1.1rem;
   margin-bottom: 15px;
   color: #444;
+  line-height: 1.7;
 }
 
-.about-section img {
-  max-width: 250px;
-  margin: 20px 0;
-  border-radius: 12px;
-  border: 3px solid #d4af37;
+.about-section .principal-signature {
+  margin-top: 20px;
+  font-style: italic;
+  color: #222;
+}
+
+/* Active class triggers animations */
+.about-section.active .about-image img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section.active .about-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-section.active .about-content h2::before,
+.about-section.active .about-content h2::after {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 /* Footer */
@@ -299,5 +394,28 @@ footer {
   .upload-section input {
     width: 100%;
     max-width: 300px;
+  }
+
+  /* Principal Section adjustments */
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 15px;
+  }
+
+  .about-section::before {
+    left: 50%;
+    top: 0;
+    bottom: auto;
+    width: 50px;
+    height: 5px;
+  }
+
+  .about-section .about-content h2::before {
+    text-align: center;
+  }
+
+  .about-section .about-content {
+    text-align: center;
   }
 }
