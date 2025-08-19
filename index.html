@@ -27,47 +27,51 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Welcome to Shahid Kamal Kant Memorial School</h1>
-      <p>Empowering minds, shaping futures. Discover a world of learning, innovation, and excellence.</p>
-      <a href="admissions.html" class="cta-button">Explore Admissions</a>
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- ✅ HERO Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Shahid Kamal Kant Memorial School</h1>
+        <p>Empowering minds, shaping futures. Discover a world of learning, innovation, and excellence.</p>
+        <a href="admissions.html" class="cta-button">Explore Admissions</a>
+      </div>
+    </section>
 
-  <!-- Feature Cards -->
-  <section class="cards">
-    <div class="card">
-      <h3>Experienced Faculty</h3>
-      <p>Our teachers are dedicated to inspiring and mentoring students for holistic development.</p>
-    </div>
-    <div class="card">
-      <h3>Smart Classrooms</h3>
-      <p>Technology-enabled learning environments for enhanced engagement and understanding.</p>
-    </div>
-    <div class="card">
-      <h3>Community Involvement</h3>
-      <p>Active student participation in local and state-level events to build confidence and leadership.</p>
-    </div>
-  </section>
+    <!-- Feature Cards -->
+    <section class="cards">
+      <div class="card">
+        <h3>Experienced Faculty</h3>
+        <p>Our teachers are dedicated to inspiring and mentoring students for holistic development.</p>
+      </div>
+      <div class="card">
+        <h3>Smart Classrooms</h3>
+        <p>Technology-enabled learning environments for enhanced engagement and understanding.</p>
+      </div>
+      <div class="card">
+        <h3>Community Involvement</h3>
+        <p>Active student participation in local and state-level events to build confidence and leadership.</p>
+      </div>
+    </section>
 
-  <!-- Teacher Photo Upload -->
-  <section class="upload-section">
-    <h2>Teacher Photo Upload</h2>
-    <input type="file" id="photoInput" accept="image/*" />
-    <input type="text" id="captionInput" placeholder="Enter a caption" />
-    <button onclick="uploadPhoto()">Upload Photo</button>
-    <p id="uploadStatus"></p>
-  </section>
+    <!-- Teacher Photo Upload Section -->
+    <section class="upload-section">
+      <h2>Teacher Photo Upload</h2>
+      <input type="file" id="photoInput" accept="image/*" />
+      <input type="text" id="captionInput" placeholder="Enter a caption" />
+      <button onclick="uploadPhoto()">Upload Photo</button>
+      <p id="uploadStatus"></p>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
 
-  <!-- Firebase JS -->
+  <!-- Firebase Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
@@ -84,9 +88,10 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
+    getAnalytics(app);
+    getFirestore(app);
 
+    // ✅ Upload Photo (placeholder)
     async function uploadPhoto() {
       const photoInput = document.getElementById("photoInput");
       const captionInput = document.getElementById("captionInput");
@@ -100,7 +105,7 @@
         return;
       }
 
-      uploadStatus.textContent = "⏳ Upload feature coming soon... (requires Firebase Storage setup)";
+      uploadStatus.textContent = "Photo upload is coming soon... (Storage requires setup)";
     }
 
     window.uploadPhoto = uploadPhoto;
