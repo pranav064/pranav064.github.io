@@ -699,3 +699,39 @@ footer {
     background: none;
   }
 }
+/* -----------------------------------
+   Clean Vertical Layout for Admission Form
+-------------------------------------*/
+.admission-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.admission-section label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.admission-section input,
+.admission-section select,
+.admission-section textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.admission-section .upload-cards,
+.admission-section .fee-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+}
