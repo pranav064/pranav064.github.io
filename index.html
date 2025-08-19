@@ -19,7 +19,7 @@
   <!-- Navigation -->
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="admissions.html">Admissions</a></li>
       <li><a href="gallery.html">Gallery</a></li>
@@ -27,90 +27,83 @@
     </ul>
   </nav>
 
-  <!-- Main Content -->
-  <main class="container">
-    
-    <!-- ✅ HERO Section -->
-    <section class="hero">
-  <div class="hero-content">
-    <h1>Welcome to Shahid Kamal Kant Memorial School</h1>
-    <p>Empowering minds, shaping futures. Discover a world of learning, innovation, and excellence.</p>
-    <a href="admissions.html" class="cta-button">Explore Admissions</a>
-  </div>
-</section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to Shahid Kamal Kant Memorial School</h1>
+      <p>Empowering minds, shaping futures. Discover a world of learning, innovation, and excellence.</p>
+      <a href="admissions.html" class="cta-button">Explore Admissions</a>
+    </div>
+  </section>
 
-    <!-- Feature Cards -->
-    <section class="cards">
-      <div class="card">
-        <h3>Experienced Faculty</h3>
-        <p>Our teachers are dedicated to inspiring and mentoring students for holistic development.</p>
-      </div>
-      <div class="card">
-        <h3>Smart Classrooms</h3>
-        <p>Technology-enabled learning environments for enhanced engagement and understanding.</p>
-      </div>
-      <div class="card">
-        <h3>Community Involvement</h3>
-        <p>Active student participation in local and state-level events to build confidence and leadership.</p>
-      </div>
-    </section>
-    <!-- Teacher Photo Upload Section -->
-<section class="upload-section">
-  <h2>Teacher Photo Upload</h2>
-  <input type="file" id="photoInput" accept="image/*" />
-  <input type="text" id="captionInput" placeholder="Enter a caption" />
-  <button onclick="uploadPhoto()">Upload Photo</button>
-  <p id="uploadStatus"></p>
-</section>
+  <!-- Feature Cards -->
+  <section class="cards">
+    <div class="card">
+      <h3>Experienced Faculty</h3>
+      <p>Our teachers are dedicated to inspiring and mentoring students for holistic development.</p>
+    </div>
+    <div class="card">
+      <h3>Smart Classrooms</h3>
+      <p>Technology-enabled learning environments for enhanced engagement and understanding.</p>
+    </div>
+    <div class="card">
+      <h3>Community Involvement</h3>
+      <p>Active student participation in local and state-level events to build confidence and leadership.</p>
+    </div>
+  </section>
 
-  </main>
+  <!-- Teacher Photo Upload -->
+  <section class="upload-section">
+    <h2>Teacher Photo Upload</h2>
+    <input type="file" id="photoInput" accept="image/*" />
+    <input type="text" id="captionInput" placeholder="Enter a caption" />
+    <button onclick="uploadPhoto()">Upload Photo</button>
+    <p id="uploadStatus"></p>
+  </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
+
+  <!-- Firebase JS -->
   <script type="module">
-  // ✅ Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-  // ✅ Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
-    authDomain: "school-portal-a56dc.firebaseapp.com",
-    projectId: "school-portal-a56dc",
-    storageBucket: "school-portal-a56dc.appspot.com",
-    messagingSenderId: "1034844606726",
-    appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
-    measurementId: "G-D4T8D0NCVN"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
+      authDomain: "school-portal-a56dc.firebaseapp.com",
+      projectId: "school-portal-a56dc",
+      storageBucket: "school-portal-a56dc.appspot.com",
+      messagingSenderId: "1034844606726",
+      appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
+      measurementId: "G-D4T8D0NCVN"
+    };
 
-  // ✅ Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
-  // 🔽 Sample function to upload a photo (we will write full logic in next step)
-  async function uploadPhoto() {
-    const photoInput = document.getElementById("photoInput");
-    const captionInput = document.getElementById("captionInput");
-    const uploadStatus = document.getElementById("uploadStatus");
+    async function uploadPhoto() {
+      const photoInput = document.getElementById("photoInput");
+      const captionInput = document.getElementById("captionInput");
+      const uploadStatus = document.getElementById("uploadStatus");
 
-    const file = photoInput.files[0];
-    const caption = captionInput.value;
+      const file = photoInput.files[0];
+      const caption = captionInput.value;
 
-    if (!file || !caption) {
-      uploadStatus.textContent = "Please select a photo and enter a caption.";
-      return;
+      if (!file || !caption) {
+        uploadStatus.textContent = "⚠️ Please select a photo and enter a caption.";
+        return;
+      }
+
+      uploadStatus.textContent = "⏳ Upload feature coming soon... (requires Firebase Storage setup)";
     }
 
-    uploadStatus.textContent = "Photo upload is coming soon... (Storage requires upgrade)";
-  }
-
-  // ✅ Attach function to global scope so HTML can access it
-  window.uploadPhoto = uploadPhoto;
-</script>
-
+    window.uploadPhoto = uploadPhoto;
+  </script>
 </body>
 </html>
