@@ -627,3 +627,71 @@ footer {
     width: 100%;
   }
 }
+/* ---------------------------
+   Admission Page Enhancements
+---------------------------- */
+
+/* Add subtle golden separator lines between sections */
+.admission-section hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(212,175,55,0.2), #d4af37, rgba(212,175,55,0.2));
+  margin: 25px 0;
+  border-radius: 5px;
+}
+
+/* Input and select icons (optional, inside fields) */
+.admission-section input[type="text"],
+.admission-section input[type="email"],
+.admission-section input[type="tel"],
+.admission-section input[type="date"],
+.admission-section select,
+.admission-section textarea {
+  padding-left: 40px; /* space for icons */
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 20px 20px;
+}
+
+/* Example icons for input types */
+#admission-section input#studentName { background-image: url('icons/student.png'); }
+#admission-section input#fatherName { background-image: url('icons/father.png'); }
+#admission-section input#motherName { background-image: url('icons/mother.png'); }
+#admission-section input#contactNumber { background-image: url('icons/phone.png'); }
+#admission-section input#email { background-image: url('icons/email.png'); }
+
+/* Focus and hover animations */
+.admission-section input:focus,
+.admission-section select:focus,
+.admission-section textarea:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212,175,55,0.3);
+  outline: none;
+}
+
+/* Scroll animation for form */
+.admission-section form {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.admission-section.active form {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth hover effect on button */
+.admission-section button {
+  transition: all 0.3s ease;
+}
+
+/* Mobile adjustments for icons */
+@media (max-width: 600px) {
+  .admission-section input,
+  .admission-section select,
+  .admission-section textarea {
+    padding-left: 12px; /* remove space for icons on mobile */
+    background: none;
+  }
+}
