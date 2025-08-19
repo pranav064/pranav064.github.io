@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shahid Kamal Kant Memorial School</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
-  <header>
+  <header class="header">
     <img src="logo.png" alt="School Logo" class="school-logo" />
     <div class="header-text">
       <h1>Shahid Kamal Kant Memorial Govt. Sr. Secondary School</h1>
@@ -17,7 +19,7 @@
   </header>
 
   <!-- Navigation -->
-  <nav>
+  <nav class="navbar">
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -42,22 +44,22 @@
     <!-- Feature Cards -->
     <section class="cards">
       <div class="card">
-        <h3>Experienced Faculty</h3>
+        <h3>👩‍🏫 Experienced Faculty</h3>
         <p>Our teachers are dedicated to inspiring and mentoring students for holistic development.</p>
       </div>
       <div class="card">
-        <h3>Smart Classrooms</h3>
+        <h3>💻 Smart Classrooms</h3>
         <p>Technology-enabled learning environments for enhanced engagement and understanding.</p>
       </div>
       <div class="card">
-        <h3>Community Involvement</h3>
+        <h3>🌍 Community Involvement</h3>
         <p>Active student participation in local and state-level events to build confidence and leadership.</p>
       </div>
     </section>
 
     <!-- Teacher Photo Upload Section -->
     <section class="upload-section">
-      <h2>Teacher Photo Upload</h2>
+      <h2>📸 Teacher Photo Upload</h2>
       <input type="file" id="photoInput" accept="image/*" />
       <input type="text" id="captionInput" placeholder="Enter a caption" />
       <button onclick="uploadPhoto()">Upload Photo</button>
@@ -71,7 +73,7 @@
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
 
-  <!-- Firebase Script -->
+  <!-- Firebase + Upload Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
@@ -88,10 +90,9 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    getAnalytics(app);
-    getFirestore(app);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
-    // ✅ Upload Photo (placeholder)
     async function uploadPhoto() {
       const photoInput = document.getElementById("photoInput");
       const captionInput = document.getElementById("captionInput");
@@ -105,7 +106,7 @@
         return;
       }
 
-      uploadStatus.textContent = "Photo upload is coming soon... (Storage requires setup)";
+      uploadStatus.textContent = "⏳ Upload feature coming soon...";
     }
 
     window.uploadPhoto = uploadPhoto;
