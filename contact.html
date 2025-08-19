@@ -77,6 +77,45 @@
   <footer>
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
+<script>
+  const infoCards = document.querySelectorAll('.info-card');
+  const contactForm = document.querySelector('.contact-form');
+  const mapSection = document.querySelector('.map');
+
+  // Contact Info Cards
+  const infoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+        infoObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  infoCards.forEach(card => infoObserver.observe(card));
+
+  // Contact Form
+  const formObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+        formObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  formObserver.observe(contactForm);
+
+  // Map
+  const mapObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+        mapObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  mapObserver.observe(mapSection);
+</script>
 
 </body>
 </html>
