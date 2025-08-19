@@ -20,6 +20,8 @@ body {
   background: linear-gradient(90deg, #d4af37, #f7e9a0);
   color: #222;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .school-logo {
@@ -190,4 +192,66 @@ footer {
   padding: 15px;
   font-size: 0.9rem;
   margin-top: 20px;
+}
+
+/* ---------------------------
+   Responsive Design
+---------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .school-logo {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .header-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  .hero {
+    height: 50vh;
+    padding: 20px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-section input {
+    width: 100%;
+    max-width: 300px;
+  }
 }
