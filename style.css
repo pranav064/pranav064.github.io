@@ -1,60 +1,4 @@
 /* Global Reset */
-/* Header */
-header {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  background: #fff;
-  border-bottom: 2px solid #eee;
-}
-
-.school-logo {
-  width: 80px;
-  height: 80px;
-  margin-right: 15px;
-}
-
-.header-text h1 {
-  font-size: 1.8rem;
-  margin: 0;
-  color: #333;
-}
-
-.header-text p {
-  margin: 0;
-  color: #666;
-  font-size: 0.95rem;
-}
-
-/* Navigation */
-nav {
-  background: #222;
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  margin: 0;
-  list-style: none;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li a.active {
-  color: #ffcc00;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -79,9 +23,7 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   flex-wrap: wrap;
   text-align: center;
-  transition: all 0.3s ease;
 }
-
 .school-logo {
   width: 70px;
   height: 70px;
@@ -89,12 +31,10 @@ body {
   border-radius: 50%;
   border: 2px solid #fff;
 }
-
 .header-text h1 {
   font-size: 1.8rem;
   font-weight: 700;
 }
-
 .header-text p {
   font-size: 1rem;
   font-weight: 500;
@@ -108,18 +48,15 @@ body {
   top: 0;
   z-index: 1000;
 }
-
 .navbar ul {
   list-style: none;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
-
 .navbar li {
   margin: 10px;
 }
-
 .navbar a {
   text-decoration: none;
   color: white;
@@ -128,7 +65,6 @@ body {
   border-radius: 6px;
   transition: all 0.3s ease;
 }
-
 .navbar a:hover,
 .navbar a.active {
   background: #d4af37;
@@ -136,15 +72,82 @@ body {
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
+/* ---------------------------
+     Hero Banner  (Version B)
+----------------------------*/
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+.cta-button {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #d4af37;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.cta-button:hover {
+  background: #b9972a;
+}
 
-/* Feature Cards */
+/* Cards */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
   padding: 60px 20px;
 }
-
 .card {
   background: white;
   border: 2px solid #f0e68c;
@@ -153,16 +156,8 @@ body {
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
-.card h3 {
-  color: #d4af37;
-  margin-bottom: 12px;
-}
-
-.card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
+.card h3 { color: #d4af37; margin-bottom: 12px; }
+.card:hover { transform: translateY(-7px); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
 
 /* Upload Section */
 .upload-section {
@@ -171,12 +166,6 @@ body {
   background: #fafafa;
   border-top: 2px solid #f0e68c;
 }
-
-.upload-section h2 {
-  margin-bottom: 15px;
-  color: #222;
-}
-
 .upload-section input,
 .upload-section button {
   margin: 10px;
@@ -184,7 +173,6 @@ body {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
 .upload-section button {
   background: #d4af37;
   color: #222;
@@ -192,13 +180,12 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-
 .upload-section button:hover {
   background: #222;
   color: #d4af37;
 }
 
-/* About Us Page - Principal's Message Section */
+/* About Section */
 .about-section {
   display: flex;
   flex-wrap: wrap;
@@ -207,14 +194,12 @@ body {
   padding: 60px 20px;
   max-width: 1000px;
   margin: auto;
-  background: #fff8e1; /* soft warm background */
+  background: #fff8e1;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   position: relative;
   text-align: left;
 }
-
-/* Golden vertical line accent */
 .about-section::before {
   content: "";
   position: absolute;
@@ -225,484 +210,35 @@ body {
   background: #d4af37;
   border-radius: 5px;
 }
+.about-section .about-image img,
+.about-section .about-content { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+.about-section.active .about-image img,
+.about-section.active .about-content { opacity: 1; transform: translateY(0); }
+.about-section .about-content h2 { color: #b8870f; margin-bottom: 20px; }
 
-/* Photo */
-.about-section .about-image {
-  flex: 1 1 250px;
-  text-align: center;
-  z-index: 1;
-}
-
-.about-section .about-image img {
-  width: 100%;
-  max-width: 250px;
-  border-radius: 15px;
-  border: 3px solid #d4af37;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  object-fit: cover;
-
-  /* initial state for scroll animation */
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
-}
-
-/* Content */
-.about-section .about-content {
-  flex: 2 1 500px;
-  z-index: 1;
-  opacity: 0; /* scroll animation initial state */
-  transform: translateX(30px);
-  transition: all 1s ease;
-}
-
-.about-section .about-content h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #b8870f; /* golden heading */
-  position: relative;
-}
-
-/* Star icon and shine line */
-.about-section .about-content h2::before {
-  content: "★";
-  display: block;
-  font-size: 2rem;
-  color: #d4af37;
-  margin-bottom: 10px;
-  text-align: left;
-  opacity: 0;
-  transform: scale(0.5) rotate(-15deg);
-  transition: all 1s ease;
-}
-
-.about-section .about-content h2::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(212,175,55,0.4), rgba(212,175,55,1), rgba(212,175,55,0.4));
-  margin-top: 5px;
-  border-radius: 2px;
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: all 1s ease;
-}
-
-/* Paragraphs and signature */
-.about-section .about-content p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  color: #444;
-  line-height: 1.7;
-}
-
-.about-section .principal-signature {
-  margin-top: 20px;
-  font-style: italic;
-  color: #222;
-}
-
-/* Active class triggers animations */
-.about-section.active .about-image img {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.about-section.active .about-content {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.about-section.active .about-content h2::before,
-.about-section.active .about-content h2::after {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
-}
-
-/* Footer */
-footer {
-  background: #222;
-  color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 0.9rem;
-  margin-top: 20px;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* ---------------------------
-   Responsive Design
----------------------------- */
-
-/* Tablets */
-@media (max-width: 992px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-}
-
-/* Mobile Phones */
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-  }
-
-  .school-logo {
-    margin-bottom: 10px;
-    margin-right: 0;
-  }
-
-  .header-text h1 {
-    font-size: 1.4rem;
-  }
-
-  .navbar ul {
-    flex-direction: column;
-    padding: 10px 0;
-  }
-
-  .hero {
-    height: 55vh;
-    padding: 20px;
-  }
-
-  .hero h1 {
-    font-size: 1.7rem;
-  }
-
-  .hero p {
-    font-size: 0.95rem;
-  }
-
-  .cta-button {
-    padding: 10px 18px;
-    font-size: 0.9rem;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .upload-section input {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  /* Principal Section adjustments */
-  .about-section {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 15px;
-  }
-
-  .about-section::before {
-    left: 50%;
-    top: 0;
-    bottom: auto;
-    width: 50px;
-    height: 5px;
-  }
-
-  .about-section .about-content h2::before {
-    text-align: center;
-  }
-
-  .about-section .about-content {
-    text-align: center;
-  }
-}
-/* ---------------------------
-   Contact Page Styles
----------------------------- */
+/* Contact Page */
 .contact-section {
   padding: 60px 20px;
   max-width: 900px;
   margin: auto;
-  background: #fff8e1; /* soft warm background like about page */
+  background: #fff8e1;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: left;
-  position: relative;
 }
-
-/* Golden vertical line accent */
-.contact-section::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 20px;
-  bottom: 20px;
-  width: 5px;
-  background: #d4af37;
-  border-radius: 5px;
-}
-
-/* Section heading */
-.contact-section h2 {
-  font-size: 2rem;
-  color: #b8870f;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.contact-section h2::before {
-  content: "✉";
-  display: block;
-  font-size: 2rem;
-  color: #d4af37;
-  margin-bottom: 10px;
-  opacity: 0.8;
-}
-
-/* Form styling */
 .contact-section form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
 .contact-section input,
 .contact-section textarea {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  width: 100%;
-  resize: none;
 }
 
-.contact-section button {
-  background: #d4af37;
-  color: #222;
-  padding: 12px 25px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  width: fit-content;
-}
-
-.contact-section button:hover {
-  background: #222;
-  color: #d4af37;
-  transform: translateY(-3px);
-}
-
-/* Contact info section */
-.contact-info {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  font-size: 1.1rem;
-}
-
-.contact-info div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contact-info i {
-  color: #d4af37;
-  font-size: 1.3rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .contact-section {
-    padding: 40px 15px;
-    text-align: center;
-  }
-
-  .contact-info {
-    align-items: center;
-  }
-
-  .contact-info div {
-    justify-content: center;
-  }
-}
-/* ---------------------------
-   Admission Page Enhancements
----------------------------- */
-.admission-section .upload-cards,
-.admission-section .fee-section {
-  margin-top: 30px;
-  padding: 20px;
-  background: #fff;
-  border: 2px solid #f0e68c;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.admission-section .upload-cards h3,
-.admission-section .fee-section h3 {
-  color: #d4af37;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-.admission-section .upload-cards p,
-.admission-section .fee-section p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  color: #444;
-}
-
-.admission-section .uploaded-files {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.admission-section .file-card {
-  padding: 10px 15px;
-  background: #fff8e1;
-  border: 1px solid #d4af37;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: #222;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-.admission-section .payment-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.admission-section .payment-card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  border: 1px solid #d4af37;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  background: #fff8e1;
-}
-
-.admission-section .payment-card input[type="radio"] {
-  accent-color: #d4af37;
-}
-
-.admission-section .payment-card:hover {
-  background: #d4af37;
-  color: #222;
-}
-
-.admission-section .payment-card:hover span {
-  color: #222;
-}
-
-.admission-section .payment-card input[type="radio"]:checked + span {
-  font-weight: 600;
-  color: #222;
-}
-
-/* Responsive Enhancements */
-@media (max-width: 600px) {
-  .admission-section .payment-options {
-    flex-direction: column;
-  }
-
-  .admission-section .file-card {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-  .admission-section button {
-    width: 100%;
-  }
-}
-/* ---------------------------
-   Admission Page Enhancements
----------------------------- */
-
-/* Add subtle golden separator lines between sections */
-.admission-section hr {
-  border: none;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(212,175,55,0.2), #d4af37, rgba(212,175,55,0.2));
-  margin: 25px 0;
-  border-radius: 5px;
-}
-
-/* Input and select icons (optional, inside fields) */
-.admission-section input[type="text"],
-.admission-section input[type="email"],
-.admission-section input[type="tel"],
-.admission-section input[type="date"],
-.admission-section select,
-.admission-section textarea {
-  padding-left: 40px; /* space for icons */
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 20px 20px;
-}
-
-/* Example icons for input types */
-#admission-section input#studentName { background-image: url('icons/student.png'); }
-#admission-section input#fatherName { background-image: url('icons/father.png'); }
-#admission-section input#motherName { background-image: url('icons/mother.png'); }
-#admission-section input#contactNumber { background-image: url('icons/phone.png'); }
-#admission-section input#email { background-image: url('icons/email.png'); }
-
-/* Focus and hover animations */
-.admission-section input:focus,
-.admission-section select:focus,
-.admission-section textarea:focus {
-  border-color: #d4af37;
-  box-shadow: 0 0 10px rgba(212,175,55,0.3);
-  outline: none;
-}
-
-/* Fade-in animation for the admission form */
-.admission-section form {
-  animation: fadeInUp 1s ease forwards;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-/* Keyframes */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* Smooth hover effect on button */
-.admission-section button {
-  transition: all 0.3s ease;
-}
-
-/* Mobile adjustments for icons */
-@media (max-width: 600px) {
-  .admission-section input,
-  .admission-section select,
-  .admission-section textarea {
-    padding-left: 12px; /* remove space for icons on mobile */
-    background: none;
-  }
-}
-/* -----------------------------------
-   Clean Vertical Layout for Admission Form
--------------------------------------*/
+/* Clean Vertical Layout for Admission Form */
 .admission-section form {
   display: flex;
   flex-direction: column;
@@ -715,12 +251,7 @@ footer {
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
-
-.admission-section label {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
+.admission-section label { font-weight: 600; margin-bottom: 4px; }
 .admission-section input,
 .admission-section select,
 .admission-section textarea {
@@ -729,7 +260,6 @@ footer {
   border-radius: 6px;
   width: 100%;
 }
-
 .admission-section .upload-cards,
 .admission-section .fee-section {
   width: 100%;
@@ -737,228 +267,50 @@ footer {
   margin: 30px auto;
 }
 
-/* ---------------- About Page Styles ---------------- */
-
-/* General About Section */
-.about {
-  margin: 3rem auto;
-  padding: 2rem;
-  background: #fffbea;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  line-height: 1.8;
-  text-align: center;
-}
-.about h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #d4a017; /* golden heading */
+/* Separator Line */
+.admission-section hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(212,175,55,0.2), #d4af37, rgba(212,175,55,0.2));
+  margin: 25px 0;
 }
 
-/* Mission & Vision */
-.mission-vision {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 3rem auto;
-  flex-wrap: wrap;
-}
-.mission-vision .card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 2rem;
-  width: 280px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-.mission-vision .card:hover {
-  transform: translateY(-8px);
-}
-.mission-vision h3 {
-  color: #d4a017;
-  margin-bottom: 1rem;
-}
-/* Principal's Message Section */
-.principal-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: #fffbea;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  max-width: 1100px;
-  flex-wrap: wrap;
+/* Focus / hover effects */
+.admission-section input:focus,
+.admission-section select:focus,
+.admission-section textarea:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212,175,55,0.3);
+  outline: none;
 }
 
-/* Principal Image */
-.principal-image img {
-  width: 250px;
-  height: auto;
-  border-radius: 12px;   /* Rectangular with rounded corners */
-  border: 4px solid #d4af37;  /* Golden border */
-  object-fit: contain;  /* Show full photo */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* Principal Text */
-.principal-text {
-  max-width: 600px;
-  min-width: 280px;
-}
-
-.principal-text h2 {
-  color: #d4a017;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-.principal-text p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #444;
-}
-
-.principal-signature {
-  margin-top: 1.5rem;
-  font-style: italic;
-  color: #555;
-}
-/* 🌟 Hero Banner */
-.hero {
-  position: relative;
-  height: 100vh; /* Full screen height */
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+/* Footer */
+footer {
+  background: #222;
   color: white;
-  overflow: hidden;
-  transition: background-image 1s ease-in-out;
+  text-align: center;
+  padding: 18px;
+  font-size: 0.9rem;
+  margin-top: 20px;
 }
 
-/* Dark overlay on hero images */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-/* Hero text content */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 20px;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.hero-content p {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-}
-
-.cta-button {
-  display: inline-block;
-  padding: 14px 30px;
-  background: #d4af37; /* Golden button */
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.cta-button:hover {
-  background: #b9972a; /* Darker gold on hover */
-}
-/* 📱 Responsive Hero Banner */
+/* ---------------------------
+   Responsive Design
+----------------------------*/
 @media (max-width: 1024px) {
-  .hero-content h1 {
-    font-size: 2.8rem;
-  }
-  .hero-content p {
-    font-size: 1.1rem;
-  }
-  .cta-button {
-    padding: 12px 25px;
-    font-size: 1rem;
-  }
+  .hero-content h1 { font-size: 2.8rem; }
+  .hero-content p { font-size: 1.1rem; }
 }
-
 @media (max-width: 768px) {
-  .hero {
-    height: 90vh; /* Slightly smaller on tablets */
-    padding: 20px;
-  }
-  .hero-content h1 {
-    font-size: 2.2rem;
-  }
-  .hero-content p {
-    font-size: 1rem;
-  }
+  .hero { height: 90vh; padding: 20px; }
+  .hero-content h1 { font-size: 2.2rem; }
+  .hero-content p { font-size: 1rem; }
 }
-
-@media (max-width: 480px) {
-  .hero {
-    height: 80vh; /* Smaller screens */
-    padding: 15px;
-  }
-  .hero-content h1 {
-    font-size: 1.8rem;
-    line-height: 1.3;
-  }
-  .hero-content p {
-    font-size: 0.95rem;
-  }
-  .cta-button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
+@media (max-width: 600px) {
+  .header { flex-direction: column; }
+  .school-logo { margin: 0 0 10px; }
+  .navbar ul { flex-direction: column; }
+  .hero { height: 80vh; padding: 15px; }
+  .hero-content h1 { font-size: 1.8rem; }
+  .hero-content p { font-size: 0.95rem; }
 }
-/* HERO SLIDES FIX */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-}
-
-.hero-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;                  /* Start hidden */
-  transition: opacity 1s ease; /* Smooth fade */
-}
-
-.hero-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-slide.active {
-  opacity: 1; /* Show active slide */
-  z-index: 1;
-}
-
-
