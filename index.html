@@ -7,6 +7,65 @@
   <link rel="stylesheet" href="style.css" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== HERO SLIDES ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+    }
+    .hero-slide {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .fade {
+      animation-name: fadeEffect;
+      animation-duration: 1.5s;
+    }
+    @keyframes fadeEffect {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+    /* Overlay text */
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      max-width: 90%;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: goldenrod;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .cta-button:hover {
+      background: darkgoldenrod;
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -32,8 +91,19 @@
   <!-- Main Content -->
   <main class="container">
     
-    <!-- ✅ HERO Section -->
+    <!-- ✅ HERO SLIDESHOW -->
     <section class="hero">
+      <div class="hero-slide fade">
+        <img src="banner1.jpg" alt="School Banner 1">
+      </div>
+      <div class="hero-slide fade">
+        <img src="banner2.jpg" alt="School Banner 2">
+      </div>
+      <div class="hero-slide fade">
+        <img src="banner3.jpg" alt="School Banner 3">
+      </div>
+
+      <!-- Overlay text stays on all slides -->
       <div class="hero-content">
         <h1>Welcome to Shahid Kamal Kant Memorial School</h1>
         <p>Empowering minds, shaping futures. Discover a world of learning, innovation, and excellence.</p>
@@ -110,6 +180,21 @@
     }
 
     window.uploadPhoto = uploadPhoto;
+  </script>
+
+  <!-- Slideshow Script -->
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.querySelectorAll(".hero-slide");
+      slides.forEach(slide => slide.style.display = "none");
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 4000); // Change every 4s
+    }
   </script>
 </body>
 </html>
