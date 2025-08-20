@@ -970,3 +970,13 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+/* Fade-in animation for contact info cards */
+.info-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s ease;
+}
+.info-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
