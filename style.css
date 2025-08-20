@@ -960,3 +960,13 @@ footer {
   opacity: 1; /* Show active slide */
   z-index: 1;
 }
+/* Fade-in animation for contact section */
+.contact-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+.contact-animate.active {
+  opacity: 1;
+  transform: translateY(0);
+}
