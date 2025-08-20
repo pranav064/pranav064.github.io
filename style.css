@@ -735,3 +735,50 @@ footer {
   max-width: 800px;
   margin: 30px auto;
 }
+/* Principal's Message Section */
+.principal-message {
+  background: #f9f9f9;
+  padding: 60px 20px;
+}
+
+.principal-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.principal-image img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #d4af37; /* Golden border */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.principal-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.principal-text h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.principal-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.principal-signature {
+  margin-top: 15px;
+  font-style: italic;
+  color: #555;
+}
