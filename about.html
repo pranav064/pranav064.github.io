@@ -36,7 +36,7 @@
   <!-- Main Content -->
   <main class="container">
     <!-- About Section -->
-    <section class="about">
+    <section class="about-section">
       <h2>About Our School</h2>
       <p>
         Shahid Kamal Kant Memorial Govt. Sr. Secondary School is dedicated to providing 
@@ -68,42 +68,42 @@
       </div>
     </section>
 
-   <!-- Principal's Message -->
-<section class="principal-message">
-  <div class="principal-container">
-    <div class="principal-image">
-      <img src="principal.jpg" alt="Principal Photo">
-    </div>
-    <div class="principal-text">
-      <h2>Principal’s Message</h2>
-      <p>
-        Dear Students and Parents,<br><br>
-        At our school, education goes beyond classrooms. 
-        We believe in creating lifelong learners, compassionate individuals, 
-        and responsible citizens who contribute positively to society. 
-        Together, let us make learning a joyful journey.
-      </p>
-      <p class="principal-signature"><strong>- Principal</strong></p>
-    </div>
-  </div>
-</section>
+    <!-- Principal's Message -->
+    <section class="principal-message">
+      <div class="principal-image">
+        <img src="principal.jpg" alt="Principal Photo">
+      </div>
+      <div class="principal-text">
+        <h2>Principal’s Message</h2>
+        <p>
+          Dear Students and Parents,<br><br>
+          At our school, education goes beyond classrooms. 
+          We believe in creating lifelong learners, compassionate individuals, 
+          and responsible citizens who contribute positively to society. 
+          Together, let us make learning a joyful journey.
+        </p>
+        <p class="principal-signature"><strong>- Principal</strong></p>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
-<script>
-  const principalSection = document.querySelector('.about-section');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        principalSection.classList.add('active');
-        observer.unobserve(principalSection);
-      }
-    });
-  }, { threshold: 0.3 });
-  observer.observe(principalSection);
-</script>
+
+  <!-- Simple Animation for Principal Section -->
+  <script>
+    const principalSection = document.querySelector('.principal-message');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          principalSection.classList.add('active');
+          observer.unobserve(principalSection);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(principalSection);
+  </script>
 </body>
 </html>
