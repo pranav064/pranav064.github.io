@@ -136,61 +136,6 @@ body {
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-/* Hero Banner */
-.hero {
-  height: 75vh;
-  background: url("hero.png") center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  padding: 0 20px;
-  position: relative;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.55);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.hero h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.hero p {
-  margin: 15px 0;
-  font-size: 1.2rem;
-}
-
-.cta-button {
-  background: #d4af37;
-  color: #222;
-  padding: 12px 25px;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: 0.3s;
-  display: inline-block;
-}
-
-.cta-button:hover {
-  background: #222;
-  color: #d4af37;
-  transform: translateY(-3px);
-}
 
 /* Feature Cards */
 .cards {
