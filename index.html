@@ -8,29 +8,32 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!-- ✅ Optimized Slideshow & Header CSS -->
   <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
     /* ===== HEADER ===== */
     .header {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 15px;
-      padding: 15px 5%;
+      padding: 10px 20px;
       background: #fff;
+      border-bottom: 2px solid goldenrod;
     }
     .school-logo {
       height: 70px;
-      width: auto;
-      flex-shrink: 0;
+      margin-right: 15px;
     }
     .header-text h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 1.5rem;
       margin: 0;
       color: #333;
     }
     .header-text p {
-      margin: 4px 0 0;
+      margin: 0;
       font-size: 1rem;
       color: #666;
     }
@@ -46,23 +49,20 @@
       padding: 0;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
     }
     .navbar li {
-      margin: 0 10px;
+      margin: 0;
     }
     .navbar a {
       display: block;
-      padding: 12px 18px;
+      padding: 14px 20px;
       color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s;
     }
-    .navbar a:hover,
-    .navbar a.active {
+    .navbar a.active,
+    .navbar a:hover {
       background: darkgoldenrod;
-      border-radius: 5px;
     }
 
     /* ===== HERO SLIDES ===== */
@@ -77,14 +77,13 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
-      will-change: opacity;
+      transition: opacity 1.5s ease-in-out;
+      will-change: opacity; /* ✅ GPU optimization */
     }
     .hero-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
     .hero-slide.active {
       opacity: 1;
@@ -98,7 +97,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      color: #fff;
+      color: white;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       max-width: 90%;
       z-index: 2;
@@ -126,61 +125,35 @@
 
     /* ===== CARDS ===== */
     .cards {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 40px 5%;
-      flex-wrap: wrap;
+      padding: 40px;
+      background: #f9f9f9;
     }
     .card {
-      flex: 1 1 280px;
-      background: #f9f9f9;
+      background: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.3s;
     }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* ===== UPLOAD SECTION ===== */
-    .upload-section {
-      text-align: center;
-      padding: 40px 5%;
-    }
-    .upload-section input, .upload-section button {
-      margin: 10px;
-      padding: 10px;
+    .card h3 {
+      margin-top: 0;
+      color: goldenrod;
     }
 
     /* ===== FOOTER ===== */
     footer {
-      background: #222;
-      color: #ddd;
       text-align: center;
       padding: 15px;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .header {
-        flex-direction: column;
-        text-align: center;
-      }
-      .header-text h1 {
-        font-size: 1.5rem;
-      }
-      .hero-content h1 {
-        font-size: 2rem;
-      }
+      background: #333;
+      color: #fff;
     }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header class="header">
+  <header class="header" role="banner">
     <img src="logo.png" alt="School Logo" class="school-logo" />
     <div class="header-text">
       <h1>Shahid Kamal Kant Memorial Govt. Sr. Secondary School</h1>
@@ -189,7 +162,7 @@
   </header>
 
   <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -199,16 +172,16 @@
     </ul>
   </nav>
 
-  <!-- HERO SLIDESHOW -->
-  <section class="hero" role="region" aria-label="School Slideshow">
+  <!-- ✅ HERO SLIDESHOW -->
+  <section class="hero" aria-label="School Banners">
     <div class="hero-slide">
-      <img src="banner1.jpg" alt="Students learning in classroom">
+      <img src="banner1.jpg" alt="Students in smart classroom learning environment">
     </div>
     <div class="hero-slide">
-      <img src="banner2.jpg" alt="School building front view">
+      <img src="banner2.jpg" alt="School building with modern facilities">
     </div>
     <div class="hero-slide">
-      <img src="banner3.jpg" alt="Students participating in sports">
+      <img src="banner3.jpg" alt="Students participating in cultural program">
     </div>
 
     <!-- Overlay text -->
@@ -220,7 +193,7 @@
   </section>
 
   <!-- Feature Cards -->
-  <section class="cards">
+  <section class="cards" aria-label="School Highlights">
     <div class="card">
       <h3>👩‍🏫 Experienced Faculty</h3>
       <p>Our teachers are dedicated to inspiring and mentoring students for holistic development.</p>
@@ -235,60 +208,12 @@
     </div>
   </section>
 
-  <!-- Teacher Photo Upload Section -->
-  <section class="upload-section">
-    <h2>📸 Teacher Photo Upload</h2>
-    <input type="file" id="photoInput" accept="image/*" aria-label="Choose photo to upload" />
-    <input type="text" id="captionInput" placeholder="Enter a caption" aria-label="Photo caption" />
-    <button onclick="uploadPhoto()">Upload Photo</button>
-    <p id="uploadStatus"></p>
-  </section>
-
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
 
-  <!-- Firebase Config -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAtszwyVhBcJtCHPTjLYdyHud0n9LFnUHM",
-      authDomain: "school-portal-a56dc.firebaseapp.com",
-      projectId: "school-portal-a56dc",
-      storageBucket: "school-portal-a56dc.appspot.com",
-      messagingSenderId: "1034844606726",
-      appId: "1:1034844606726:web:d69b724b7644ca3a9e8e87",
-      measurementId: "G-D4T8D0NCVN"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    async function uploadPhoto() {
-      const photoInput = document.getElementById("photoInput");
-      const captionInput = document.getElementById("captionInput");
-      const uploadStatus = document.getElementById("uploadStatus");
-
-      const file = photoInput.files[0];
-      const caption = captionInput.value;
-
-      if (!file || !caption) {
-        uploadStatus.textContent = "⚠️ Please select a photo and enter a caption.";
-        return;
-      }
-
-      uploadStatus.textContent = "⏳ Upload feature coming soon...";
-    }
-
-    window.uploadPhoto = uploadPhoto;
-  </script>
-
-  <!-- Slideshow Script -->
+  <!-- ✅ Slideshow Script -->
   <script>
     let slideIndex = 0;
     const slides = document.querySelectorAll(".hero-slide");
@@ -297,9 +222,10 @@
       slides.forEach(slide => slide.classList.remove("active"));
       slideIndex = (slideIndex + 1) % slides.length;
       slides[slideIndex].classList.add("active");
-      setTimeout(showSlides, 4000); // 4s per slide
+      setTimeout(showSlides, 5000); // 5s per slide
     }
 
+    // Start slideshow after page loads
     window.onload = () => {
       slides[0].classList.add("active");
       showSlides();
