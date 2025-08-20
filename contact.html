@@ -83,17 +83,19 @@
   const contactForm = document.querySelector('.contact-animate');
   const mapSection = document.querySelector('.map');
 
-  // Contact Info Cards
-  const infoObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
+// Contact Info Cards (staggered)
+const infoObserver = new IntersectionObserver(entries => {
+  entries.forEach((entry, index) => {
+    if(entry.isIntersecting){
+      setTimeout(() => {
         entry.target.classList.add('active');
-        infoObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
+      }, index * 200); // 200ms delay between cards
+      infoObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
 
-  infoCards.forEach(card => infoObserver.observe(card));
+infoCards.forEach(card => infoObserver.observe(card));
 
   // Contact Form
   const formObserver = new IntersectionObserver(entries => {
