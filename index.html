@@ -5,92 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shahid Kamal Kant Memorial School</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- ✅ Optimized Slideshow & Header CSS -->
+  <!-- Inline styles (only parts not already included in style.css) -->
   <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-    }
-
-    /* ===== HEADER ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      background: #fff;
-      border-bottom: 2px solid goldenrod;
-    }
-    .school-logo {
-      height: 70px;
-      margin-right: 15px;
-    }
-    .header-text h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      color: #333;
-    }
-    .header-text p {
-      margin: 0;
-      font-size: 1rem;
-      color: #666;
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background: goldenrod;
-      text-align: center;
-    }
-    .navbar ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
-    .navbar li {
-      margin: 0;
-    }
-    .navbar a {
-      display: block;
-      padding: 14px 20px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .navbar a.active,
-    .navbar a:hover {
-      background: darkgoldenrod;
-    }
-
-    /* ===== HERO SLIDES ===== */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      overflow: hidden;
-    }
-    .hero-slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-      will-change: opacity; /* ✅ GPU optimization */
-    }
-    .hero-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero-slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    /* Overlay text */
+    /* Overlay positioning for hero content (unique to this page) */
     .hero-content {
       position: absolute;
       top: 50%;
@@ -102,55 +21,16 @@
       max-width: 90%;
       z-index: 2;
     }
-    .hero-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-    }
-    .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
     .cta-button {
       display: inline-block;
       padding: 12px 24px;
-      background: goldenrod;
-      color: white;
       font-weight: bold;
       border-radius: 6px;
       text-decoration: none;
     }
-    .cta-button:hover {
-      background: darkgoldenrod;
-    }
-
-    /* ===== CARDS ===== */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-      background: #f9f9f9;
-    }
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin-top: 0;
-      color: goldenrod;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #333;
-      color: #fff;
-    }
   </style>
 </head>
+
 <body>
   <!-- Header -->
   <header class="header" role="banner">
@@ -172,7 +52,7 @@
     </ul>
   </nav>
 
-  <!-- ✅ HERO SLIDESHOW -->
+  <!-- Hero Slideshow -->
   <section class="hero" aria-label="School Banners">
     <div class="hero-slide">
       <img src="banner1.jpg" alt="Students in smart classroom learning environment">
@@ -184,7 +64,6 @@
       <img src="banner3.jpg" alt="Students participating in cultural program">
     </div>
 
-    <!-- Overlay text -->
     <div class="hero-content">
       <h1>Welcome to Shahid Kamal Kant Memorial School</h1>
       <p>Empowering minds, shaping futures. Discover a world of learning, innovation, and excellence.</p>
@@ -208,24 +87,20 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer role="contentinfo">
     <p>&copy; 2025 Shahid Kamal Kant Memorial Govt. Sr. Secondary School, Kotri Bias, HP</p>
   </footer>
 
-  <!-- ✅ Slideshow Script -->
+  <!-- Slideshow Script -->
   <script>
     let slideIndex = 0;
     const slides = document.querySelectorAll(".hero-slide");
-
     function showSlides() {
       slides.forEach(slide => slide.classList.remove("active"));
       slideIndex = (slideIndex + 1) % slides.length;
       slides[slideIndex].classList.add("active");
-      setTimeout(showSlides, 5000); // 5s per slide
+      setTimeout(showSlides, 5000);
     }
-
-    // Start slideshow after page loads
     window.onload = () => {
       slides[0].classList.add("active");
       showSlides();
